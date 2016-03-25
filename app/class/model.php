@@ -109,39 +109,39 @@ class News extends Database
 		$this->insertNews();
 
 	}
-public function uploadFile(){
-	$this->fileName=$this->newsImage ['name'];
-	$this->fileDir=$this->newsImage ['tmp_name'];
-	$dest="../upload/";
-	$path=$dest.$this->fileName;
-	
+	public function uploadFile(){
+		$this->fileName=$this->newsImage ['name'];
+		$this->fileDir=$this->newsImage ['tmp_name'];
+		$dest="../upload/";
+		$path=$dest.$this->fileName;
+		
 
-	if(move_uploaded_file($this->fileDir,$path)){
+		if(move_uploaded_file($this->fileDir,$path)){
 
 			return $this->test=TRUE;
 
-	}else{
-		return $this->test=FALSE;
-	};
-}
+		}else{
+			return $this->test=FALSE;
+		};
+	}
 	public function insertNews(){
 		if($this->test===TRUE){
 			$sql = "INSERT INTO news (news_name,news_desc,news_text,status,news_date,img_full) VALUES ('$this->newsTitle','$this->newsDesc','$this->newsText','$this->newsStatus','$this->newsDate','$this->newsImage')";
-		$query = mysqli_query($this->conn,$sql);
+			$query = mysqli_query($this->conn,$sql);
 
-		if($query){
-			echo "Add olundu!";
+			if($query){
+				echo "Add olundu!";
+			}
+			else {
+				echo "Error! Not added!";
+			}	
+		}else{
+			echo "ged ayna";
 		}
-		else {
-			echo "Error! Not added!";
-		}	
-	}else{
-		echo "ged ayna";
-	}
 		
 	}
 	
-  
+	
 }
 
- ?>
+?>
